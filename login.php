@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
 
     }
 
-    if ($firstname === $db_firstname && $password === $db_user_password) {
+    if ($firstname !== $db_firstname && $password !== $db_user_password) {
 
         header("Location: login.php");
 
