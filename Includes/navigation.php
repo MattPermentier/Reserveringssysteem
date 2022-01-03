@@ -9,13 +9,9 @@
 </head>
 <body>
 
-<form action="">
-
-    <a href="afspraak_maken.php">Afspraak Maken</a>
-    <a href="afspraken_overzicht.php">Afspraken Overzicht</a>
-    <a href="mijn_gegevens.php">Mijn Gegevens</a>
-
-</form>
+<a href="create.php">Afspraak Maken</a>
+<a href="details.php">Mijn Afspraken</a>
+<a href="profile.php">Mijn Gegevens</a>
 
 </body>
 </html>
