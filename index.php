@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /** @var mysqli $db */
 
 //Require DB settings with connection variable
@@ -65,3 +65,4 @@ mysqli_close($connection);
 </table>
 </body>
 </html>
+

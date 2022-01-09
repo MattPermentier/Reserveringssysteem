@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,10 +12,10 @@
     <title>Document</title>
 </head>
 <body>
+<li><a href="create.php">Afspraak Maken</a></li>
+<li><a href="details.php">Mijn Afspraken</a></li>
+<li><a href="profile.php">Mijn Gegevens</a></li>
 
-<a href="create.php">Afspraak Maken</a>
-<a href="details.php">Mijn Afspraken</a>
-<a href="profile.php">Mijn Gegevens</a>
 
 </body>
 </html>
