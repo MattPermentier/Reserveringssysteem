@@ -1,5 +1,6 @@
 <?php
-/** @var mysqli $db */
+require_once "includes/header.php";
+/** @var mysqli $connection */
 
 // redirect when uri does not contain a id
 if(!isset($_GET['id']) || $_GET['id'] == '') {
@@ -12,11 +13,11 @@ if(!isset($_GET['id']) || $_GET['id'] == '') {
 require_once "includes/database.php";
 
 //Retrieve the GET parameter from the 'Super global'
-$reservationId = mysqli_escape_string($db, $_GET['id']);
+$reservationId = mysqli_escape_string($connection, $_GET['id']);
 
 //Get the record from the database result
 $query = "SELECT * FROM reservations WHERE id = '$reservationId'";
-$result = mysqli_query($db, $query)
+$result = mysqli_query($connection, $query)
 or die ('Error: ' . $query );
 
 if(mysqli_num_rows($result) != 1)
@@ -29,7 +30,7 @@ if(mysqli_num_rows($result) != 1)
 $reservation = mysqli_fetch_assoc($result);
 
 //Close connection
-mysqli_close($db);
+mysqli_close($connection);
 ?>
 <!doctype html>
 <html lang="en">

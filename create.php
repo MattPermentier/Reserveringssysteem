@@ -1,6 +1,6 @@
 <?php
-
-/** @var mysqli $db */
+require_once "includes/header.php";
+/** @var mysqli $connection */
 
 //Check if Post isset, else do nothing
 if (isset($_POST['submit'])) {
@@ -9,10 +9,10 @@ if (isset($_POST['submit'])) {
 
 
     //Postback with the data showed to the user, first retrieve data from 'Super global'
-    $name = mysqli_escape_string($db, $_POST['name']);
-    $haircut = mysqli_escape_string($db, $_POST['haircut']);
-    $date = mysqli_escape_string($db, $_POST['date']);
-    $time = mysqli_escape_string($db, $_POST['time']);
+    $name = mysqli_escape_string($connection, $_POST['name']);
+    $haircut = mysqli_escape_string($connection, $_POST['haircut']);
+    $date = mysqli_escape_string($connection, $_POST['date']);
+    $time = mysqli_escape_string($connection, $_POST['time']);
 
     // CHECK IF BUTTON IS CLICKED AND SAVE THE VALUES
     if (isset($_POST['submit'])) {
@@ -23,17 +23,17 @@ if (isset($_POST['submit'])) {
         $time = $_POST['time'];
 
         $query_reservations = "INSERT INTO reservations (name, haircut, date, time) VALUES ('$name', '$haircut', '$date', '$time')";
-        $result_reservations = mysqli_query($db, $query_reservations) or die('Error: ' . mysqli_error($db) . ' with query ' . $query_reservations);
+        $result_reservations = mysqli_query($connection, $query_reservations) or die('Error: ' . mysqli_error($connection) . ' with query ' . $query_reservations);
 
         if ($result_reservations) {
             header('Location: index.php');
             exit;
         } else {
-            $errors['db'] = 'Something went wrong in your database query: ' . mysqli_error($db);
+            $errors['db'] = 'Something went wrong in your database query: ' . mysqli_error($connection);
         }
 
         //Close connection
-        mysqli_close($db);
+        mysqli_close($connection);
 
     }
 }
@@ -47,13 +47,15 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
-<h1>Maak een Afspraak</h1>
-<?php if (isset($errors['db'])) { ?>
-    <div><span class="errors"><?= $errors['db']; ?></span></div>
-<?php } ?>
 
 <!--Navigation-->
 <?php include "includes/navigation.php"; ?>
+
+<h1>Welkom <?php echo $_SESSION['firstname']; ?></h1>
+
+<?php if (isset($errors['db'])) { ?>
+    <div><span class="errors"><?= $errors['db']; ?></span></div>
+<?php } ?>
 
 <!-- enctype="multipart/form-data" no characters will be converted -->
 <form action="" method="post" enctype="multipart/form-data">
@@ -61,7 +63,7 @@ if (isset($_POST['submit'])) {
     <!--    CHOOSE NAME-->
     <div class="data-field">
         <label for="name">Naam</label>
-        <input id="name" type="text" name="name"/>
+        <input id="name" type="text" name="name" value="<?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?>"/>
         <span class="errors"><?= $errors['name'] ?? '' ?></span>
     </div>
 

@@ -1,12 +1,12 @@
 <?php
-
+require_once "includes/header.php";
 require_once "includes/database.php";
-/** @var mysqli $db */
+/** @var mysqli $connection */
 
 $id = $_REQUEST['id'];
 $query = "SELECT * FROM reservations WHERE id= '$id'";
 
-$result = mysqli_query($db, $query) or die('Error: ' . mysqli_error($db) . ' with query ' . $query);
+$result = mysqli_query($connection, $query) or die('Error: ' . mysqli_error($connection) . ' with query ' . $query);
 $row = mysqli_fetch_assoc($result);
 
 // CHECK IF BUTTON IS CLICKED AND GET THE CREATED VALUES
@@ -18,17 +18,17 @@ if (isset($_GET['submit'])) {
     $time = $_GET['time'];
 
     $query_reservations = "UPDATE reservations SET name='$name', haircut='$haircut', date='$date', time='$time', WHERE id='$id'";
-    $result_reservations = mysqli_query($db, $query_reservations) or die('Error: ' . mysqli_error($db) . ' with query ' . $query_reservations);
+    $result_reservations = mysqli_query($connection, $query_reservations) or die('Error: ' . mysqli_error($connection) . ' with query ' . $query_reservations);
 
     if ($result_reservations) {
         header('Location: index.php');
         exit;
     } else {
-        $errors['db'] = 'Something went wrong in your database query: ' . mysqli_error($db);
+        $errors['db'] = 'Something went wrong in your database query: ' . mysqli_error($connection);
     }
 
     //Close connection
-    mysqli_close($db);
+    mysqli_close($connection);
 
 }
 
@@ -42,7 +42,7 @@ if (isset($_GET['submit'])) {
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
-<h1>Maak een Afspraak</h1>
+<h1>Afspraak wijzigen</h1>
 <?php if (isset($errors['db'])) { ?>
     <div><span class="errors"><?= $errors['db']; ?></span></div>
 <?php } ?>

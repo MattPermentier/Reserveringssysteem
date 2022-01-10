@@ -1,6 +1,6 @@
 <?php
-session_start();
-/** @var mysqli $db */
+require_once "includes/header.php";
+/** @var mysqli $connection */
 
 //Require DB settings with connection variable
 require_once "includes/database.php";
