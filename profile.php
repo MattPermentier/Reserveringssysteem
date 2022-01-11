@@ -1,17 +1,14 @@
 <?php
 require_once "includes/header.php";
-/** @var mysqli $connection */
-
-
-//Require database in this file
 require_once "includes/database.php";
+/** @var mysqli $connection */
 
 if (isset($_SESSION['email'])) {
 
     $email = $_SESSION['email'];
 
-    $query = "SELECT * FROM users WHERE user_email = '$email'";
-    $select_user_profile_query = mysqli_query($connection, $query);
+    $select_query = "SELECT * FROM users WHERE user_email = '{$email}'";
+    $select_user_profile_query = mysqli_query($connection, $select_query);
 
     while ($row = mysqli_fetch_array($select_user_profile_query)) {
         $user_id = $row['user_id'];
@@ -23,24 +20,17 @@ if (isset($_SESSION['email'])) {
     }
 }
 
-    if (isset($_POST['edit_user'])) {
+if (isset($_POST['submit'])) {
 
-        $user_firstname = $_POST['user_firstname'];
-        $user_lastname = $_POST['user_lastname'];
-        $user_email = $_POST['user_email'];
-        $user_phone = $_POST['user_phone_number'];
+    $user_firstname = $_POST['firstname'];
+    $user_lastname = $_POST['lastname'];
+    $user_email = $_POST['email'];
+    $user_phone_number = $_POST['phone'];
 
+    $update_query = "UPDATE users SET user_firstname = '$user_firstname', user_lastname = '$user_lastname', user_email = '$email', user_phone_number = '$user_phone' WHERE user_email = '$email'";
+    $update_user_query = mysqli_query($connection, $update_query);
 
-
-        $update_query = "UPDATE users SET user_firstname = '$user_firstname', user_lastname = '$user_lastname', user_email = '$user_email', user_phone_number = '$user_phone' WHERE id = '$user_id'";
-
-        $edit_user_query = mysqli_query($connection, $update_query);
-
-        if (!$edit_user_query) {
-            die("QUERY FAILED" . mysqli_error($connection));
-        }
-
-    }
+}
 
 
 
@@ -59,27 +49,29 @@ if (isset($_SESSION['email'])) {
 
 <?php include "includes/navigation.php"?>
 
-    <div>
-        <label for="">Voornaam</label>
-        <input type="text" value="<?php echo $user_firstname; ?>">
-    </div>
-    <div>
-        <label for="">Achternaam</label>
-        <input type="text" value="<?php echo $user_lastname; ?>">
-    </div>
-    <div>
-        <label for="">Email</label>
-        <input type="email" value="<?php echo $user_email; ?>">
-    </div>
-    <div>
-        <label for="">Telefoonnummer</label>
-        <input type="text" value="<?php echo $user_phone; ?>">
-    </div>
+    <form action="" method="post">
+        <div>
+            <label for="">Voornaam</label>
+            <input type="text" name="firstname" value="<?php echo $user_firstname; ?>">
+        </div>
+        <div>
+            <label for="">Achternaam</label>
+            <input type="text" name="lastname" value="<?php echo $user_lastname; ?>">
+        </div>
+        <div>
+            <label for="">Email</label>
+            <input type="email" name="email" value="<?php echo $user_email; ?>">
+        </div>
+        <div>
+            <label for="">Telefoonnummer</label>
+            <input type="text" name="phone" value="<?php echo $user_phone; ?>">
+        </div>
 
 
-    <div>
-        <button type="submit" name="edit_user">Gegevens wijzigen</button>
-    </div>
+        <div>
+            <input type="submit" name="submit" value="Gegevens wijzigen" />
+        </div>
 
+    </form>
 </body>
 </html>

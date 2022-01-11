@@ -10,14 +10,14 @@ $result = mysqli_query($connection, $query) or die('Error: ' . mysqli_error($con
 $row = mysqli_fetch_assoc($result);
 
 // CHECK IF BUTTON IS CLICKED AND GET THE CREATED VALUES
-if (isset($_GET['submit'])) {
+if (isset($_POST['submit'])) {
 
-    $name = $_GET['name'];
-    $haircut = $_GET['haircut'];
-    $date = $_GET['date'];
-    $time = $_GET['time'];
+    $name = $_POST['name'];
+    $haircut = $_POST['haircut'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
 
-    $query_reservations = "UPDATE reservations SET name='$name', haircut='$haircut', date='$date', time='$time', WHERE id='$id'";
+    $query_reservations = "UPDATE reservations SET name='$name', haircut='$haircut', date='$date', time='$time' WHERE id={$id}";
     $result_reservations = mysqli_query($connection, $query_reservations) or die('Error: ' . mysqli_error($connection) . ' with query ' . $query_reservations);
 
     if ($result_reservations) {
