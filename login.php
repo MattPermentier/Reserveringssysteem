@@ -20,6 +20,9 @@
             <div>
                 <button name="login" type="submit">Login</button>
             </div>
+            <div>
+                <a href="registration.php">Nog geen account?</a>
+            </div>
         </form>
     </div>
 </body>

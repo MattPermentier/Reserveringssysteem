@@ -1,11 +1,11 @@
 <?php
-require_once "includes/header.php";
+require_once "includes/admin_header.php";
 /** @var mysqli $connection */
 
 //Check if Post isset, else do nothing
 if (isset($_POST['submit'])) {
 
-    require_once "includes/database.php";
+    require_once "admin/includes/database.php";
 
 
     //Postback with the data showed to the user, first retrieve data from 'Super global'
@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
 
         } else {
             echo "Uw afspraak is gemaakt!";
-            header("Location: create.php");
+            header("Location: index.php");
         }
 
     } else {
@@ -50,15 +50,7 @@ if (isset($_POST['submit'])) {
 <body>
 
 <!--Navigation-->
-<?php
-if ($_SESSION['firstname'] == "admin") {
-
-    include "admin/includes/admin_navigation.php";
-} else {
-
-    include "includes/user_navigation.php";
-}
-?>
+<?php include "includes/admin_navigation.php"; ?>
 
 <h1>Welkom <?php echo $_SESSION['firstname']; ?></h1>
 
@@ -72,7 +64,7 @@ if ($_SESSION['firstname'] == "admin") {
     <!--    CHOOSE NAME-->
     <div class="data-field">
         <label for="name">Naam</label>
-        <input id="name" type="text" name="name" value="<?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?>" required/>
+        <input id="name" type="text" name="name" placeholder="Naam" required/>
         <span class="errors"><?= $errors['name'] ?? '' ?></span>
     </div>
 
@@ -101,7 +93,7 @@ if ($_SESSION['firstname'] == "admin") {
     <!--    CHOOSE TIME-->
     <div class="data-field">
         <label for="time">Tijd</label>
-        <input type="time" name="time" min="09:00" max="18:00" step="1800" value="time" required>
+        <input type="time" name="time" min="09:00" max="18:00" step="300" value="time" required>
 
         <span class="errors"><?= isset($errors['haircut']) ? $errors['haircut'] : '' ?></span>
     </div>

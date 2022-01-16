@@ -1,5 +1,5 @@
 <?php
-require_once "includes/header.php";
+require_once "includes/admin_header.php";
 /** @var mysqli $connection */
 
 //Require music data & image helpers to use variable in this file

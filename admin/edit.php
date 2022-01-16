@@ -1,5 +1,5 @@
 <?php
-require_once "includes/header.php";
+require_once "includes/admin_header.php";
 require_once "includes/database.php";
 /** @var mysqli $connection */
 
@@ -9,7 +9,7 @@ $query = "SELECT * FROM reservations WHERE id= '$id'";
 $result = mysqli_query($connection, $query) or die('Error: ' . mysqli_error($connection) . ' with query ' . $query);
 $row = mysqli_fetch_assoc($result);
 
-// CHECK IF BUTTON IS CLICKED AND GET THE CREATED VALUES
+// CHECK IF BUTTON IS CLICKED AND GET THE NEW INPUT VALUES
 if (isset($_POST['submit'])) {
 
     $name = $_POST['name'];
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
 <head>
     <title>Music Collection Create</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
 <h1>Afspraak wijzigen</h1>

@@ -1,5 +1,5 @@
 <?php
-require_once "includes/header.php";
+require_once "includes/admin_header.php";
 /** @var mysqli $connection */
 
 // redirect when uri does not contain a id
@@ -17,8 +17,7 @@ $reservationId = mysqli_escape_string($connection, $_GET['id']);
 
 //Get the record from the database result
 $query = "SELECT * FROM reservations WHERE id = '$reservationId'";
-$result = mysqli_query($connection, $query)
-or die ('Error: ' . $query );
+$result = mysqli_query($connection, $query) or die ('Error: ' . $query );
 
 if(mysqli_num_rows($result) != 1)
 {
@@ -37,7 +36,7 @@ mysqli_close($connection);
 <head>
     <title>Music Collection Details</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
 <h1><?= $reservation['name'] ?></h1>

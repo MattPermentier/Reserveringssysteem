@@ -9,8 +9,8 @@
 </head>
 <body>
 <a href="create.php">Afspraak Maken</a>
-<a href="details.php">Mijn Afspraken</a>
 <a href="profile.php">Mijn Gegevens</a>
+<a href="includes/logout.php">Uitloggen</a>
 
 
 </body>

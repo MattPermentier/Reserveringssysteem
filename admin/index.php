@@ -1,5 +1,5 @@
 <?php
-require_once "includes/header.php";
+require_once "includes/admin_header.php";
 /** @var mysqli $connection */
 
 //Require DB settings with connection variable
@@ -24,12 +24,12 @@ mysqli_close($connection);
 <head>
     <title>Music Collection</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
 <h1>Mijn Afspraken</h1>
 
-<?php include "includes/navigation.php"; ?>
+<?php include "includes/admin_navigation.php"; ?>
 
 <table>
     <thead>
