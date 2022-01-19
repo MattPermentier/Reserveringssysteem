@@ -1,4 +1,4 @@
-<?php require_once "includes/checkregistration.php"; ?>
+<?php require_once "includes/inc_registration.php"; ?>
 
 <!doctype html>
 <html lang="en">

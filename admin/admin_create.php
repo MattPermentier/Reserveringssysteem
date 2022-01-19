@@ -1,41 +1,5 @@
-<?php
-require_once "includes/admin_header.php";
-/** @var mysqli $connection */
+<?php require_once "includes/inc_admin_create.php"; ?>
 
-//Check if Post isset, else do nothing
-if (isset($_POST['submit'])) {
-
-    require_once "includes/database.php";
-
-    //SAVE THE INPUTVALUES WITH SQL
-    $name = mysqli_escape_string($connection, $_POST['name']);
-    $haircut = mysqli_escape_string($connection, $_POST['haircut']);
-    $date = mysqli_escape_string($connection, $_POST['date']);
-    $time = mysqli_escape_string($connection, $_POST['time']);
-
-    require_once "includes/admin_form_validation.php";
-
-    // CHECK IF BUTTON IS CLICKED AND SAVE THE INPUTVALUES
-
-    if (empty($errors)) {
-
-        $query = "INSERT INTO reservations (name, haircut, date, time) VALUES ('$name', '$haircut', '$date', '$time')";
-        $result = mysqli_query($connection, $query) or die('Error: '. mysqli_error($connection) . ' with query ' . $query);
-
-        if ($result) {
-            header("Location: index.php");
-            exit;
-        } else {
-            $errors['connection'] = 'Er is iets fout gegaan: ' . mysqli_error($connection);
-        }
-
-        // Close connection with database
-        mysqli_close($connection);
-    }
-
-}
-
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -69,7 +33,7 @@ if (isset($_POST['submit'])) {
         <label for="haircut">Knipbeurt</label>
 
         <select name="haircut" required>
-            <option value="empty">Select</option>
+            <option value="">Select</option>
             <option value="Heren Knippen">Heren Knippen</option>
             <option value="Dames Knippen">Dames Knippen</option>
             <option value="Heren Knippen + Wassen">Heren Knippen + Wassen</option>

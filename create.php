@@ -1,41 +1,5 @@
-<?php
-require_once "includes/header.php";
-/** @var mysqli $connection */
+<?php require_once "includes/inc_create.php"; ?>
 
-//Check if Post isset, else do nothing
-if (isset($_POST['submit'])) {
-
-    require_once "includes/database.php";
-
-    //SAVE THE INPUTVALUES WITH SQL
-    $name = mysqli_escape_string($connection, $_POST['name']);
-    $haircut = mysqli_escape_string($connection, $_POST['haircut']);
-    $date = mysqli_escape_string($connection, $_POST['date']);
-    $time = mysqli_escape_string($connection, $_POST['time']);
-
-    require_once "includes/form_validation.php";
-
-    // CHECK IF BUTTON IS CLICKED AND SAVE THE INPUTVALUES
-
-    if (empty($errors)) {
-
-        $query = "INSERT INTO reservations (name, haircut, date, time) VALUES ('$name', '$haircut', '$date', '$time')";
-        $result = mysqli_query($connection, $query) or die('Error: '. mysqli_error($connection) . ' with query ' . $query);
-
-        if ($result) {
-            header("Location: index.php");
-            exit;
-        } else {
-            $errors['connection'] = 'Er is iets fout gegaan: ' . mysqli_error($connection);
-        }
-
-        // Close connection with database
-        mysqli_close($connection);
-    }
-
-}
-
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -66,18 +30,18 @@ if ($_SESSION['firstname'] == "admin") {
 <form action="" method="post" enctype="multipart/form-data">
 
     <!--    CHOOSE NAME-->
-    <div class="data-field">
+    <div>
         <label for="name">Naam</label>
         <input id="name" type="text" name="name" value="<?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?>" required/>
         <span class="errors"><?= $errors['name'] ?? '' ?></span>
     </div>
 
     <!--    CHOOSE HAIRCUT-->
-    <div class="data-field">
+    <div>
         <label for="haircut">Knipbeurt</label>
 
         <select name="haircut" required>
-            <option value="empty">Select</option>
+            <option value="">Select</option>
             <option value="Heren Knippen">Heren Knippen</option>
             <option value="Dames Knippen">Dames Knippen</option>
             <option value="Heren Knippen + Wassen">Heren Knippen + Wassen</option>
@@ -88,14 +52,14 @@ if ($_SESSION['firstname'] == "admin") {
     </div>
 
     <!--    CHOOSE DATE-->
-    <div class="data-field">
+    <div>
         <label for="date">Datum</label>
         <input id="date" type="date" name="date" required/>
         <span class="errors"><?= isset($errors['date']) ? $errors['date'] : '' ?></span>
     </div>
 
     <!--    CHOOSE TIME-->
-    <div class="data-field">
+    <div>
         <label for="time">Tijd</label>
         <input type="time" name="time" min="09:00" max="18:00" step="1800" value="time" required>
 
@@ -103,14 +67,14 @@ if ($_SESSION['firstname'] == "admin") {
     </div>
 
     <!--    SUBMIT BUTTON-->
-    <div class="data-submit">
+    <div>
         <input type="submit" name="submit" value="Save"/>
     </div>
 </form>
 
 <!--BACK TO INDEX.PHP-->
 <div>
-    <a href="admin/index.php">Go back to the list</a>
+    <a href="create.php">Maak een nieuwe reservering</a>
 </div>
 </body>
 </html>

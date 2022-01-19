@@ -10,7 +10,7 @@
 <body>
     <div>
         <h4>Login</h4>
-        <form action="includes/checklogin.php" method="post">
+        <form action="includes/inc_login.php" method="post">
             <div>
                 <input name="email" type="email" placeholder="Email">
             </div>
