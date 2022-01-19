@@ -7,36 +7,32 @@ if (isset($_POST['submit'])) {
 
     require_once "includes/database.php";
 
-
-    //Postback with the data showed to the user, first retrieve data from 'Super global'
+    //SAVE THE INPUTVALUES WITH SQL
     $name = mysqli_escape_string($connection, $_POST['name']);
     $haircut = mysqli_escape_string($connection, $_POST['haircut']);
     $date = mysqli_escape_string($connection, $_POST['date']);
     $time = mysqli_escape_string($connection, $_POST['time']);
 
-    // CHECK IF BUTTON IS CLICKED AND SAVE THE VALUES
-    if (isset($_POST['submit'])) {
+    require_once "includes/form_validation.php";
 
-        $name = $_POST['name'];
-        $haircut = $_POST['haircut'];
-        $date = $_POST['date'];
-        $time = $_POST['time'];
+    // CHECK IF BUTTON IS CLICKED AND SAVE THE INPUTVALUES
 
-        $query_reservations = "INSERT INTO reservations (name, haircut, date, time) VALUES ('$name', '$haircut', '$date', '$time')";
-        $result_reservations = mysqli_query($connection, $query_reservations) or die('Error: ' . mysqli_error($connection) . ' with query ' . $query_reservations);
+    if (empty($errors)) {
 
-        if (!$result_reservations) {
-            die("QUERY FAILED " . mysqli_error($connection) . '' . mysqli_errno($connection));
+        $query = "INSERT INTO reservations (name, haircut, date, time) VALUES ('$name', '$haircut', '$date', '$time')";
+        $result = mysqli_query($connection, $query) or die('Error: '. mysqli_error($connection) . ' with query ' . $query);
 
+        if ($result) {
+            header("Location: index.php");
+            exit;
         } else {
-            echo "Uw afspraak is gemaakt!";
-            header("Location: create.php");
+            $errors['connection'] = 'Er is iets fout gegaan: ' . mysqli_error($connection);
         }
 
-    } else {
-        echo "Vul alle velden in";
-
+        // Close connection with database
+        mysqli_close($connection);
     }
+
 }
 
 ?>
@@ -62,8 +58,8 @@ if ($_SESSION['firstname'] == "admin") {
 
 <h1>Welkom <?php echo $_SESSION['firstname']; ?></h1>
 
-<?php if (isset($errors['db'])) { ?>
-    <div><span class="errors"><?= $errors['db']; ?></span></div>
+<?php if (isset($errors['connection'])) { ?>
+    <div><span class="errors"><?= $errors['connection']; ?></span></div>
 <?php } ?>
 
 <!-- enctype="multipart/form-data" no characters will be converted -->

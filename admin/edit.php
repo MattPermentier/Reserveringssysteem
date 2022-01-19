@@ -17,10 +17,10 @@ if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $time = $_POST['time'];
 
-    $query_reservations = "UPDATE reservations SET name='$name', haircut='$haircut', date='$date', time='$time' WHERE id={$id}";
-    $result_reservations = mysqli_query($connection, $query_reservations) or die('Error: ' . mysqli_error($connection) . ' with query ' . $query_reservations);
+    $query = "UPDATE reservations SET name='$name', haircut='$haircut', date='$date', time='$time' WHERE id= '$id'";
+    $result = mysqli_query($connection, $query) or die('Error: ' . mysqli_error($connection) . ' with query ' . $query);
 
-    if ($result_reservations) {
+    if ($result) {
         header('Location: index.php');
         exit;
     } else {
