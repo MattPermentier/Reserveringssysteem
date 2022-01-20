@@ -1,4 +1,7 @@
-<?php require_once "includes/inc_admin_create.php"; ?>
+<?php
+require_once "includes/inc_admin_create.php";
+/** @var mysqli $name */
+?>
 
 <!doctype html>
 <html lang="en">
@@ -24,7 +27,7 @@
     <!--    CHOOSE NAME-->
     <div class="data-field">
         <label for="name">Naam</label>
-        <input id="name" type="text" name="name" placeholder="Naam" required/>
+        <input id="name" type="text" name="name" placeholder="Naam" required value="<?= htmlentities($name)?>"/>
         <span class="errors"><?= $errors['name'] ?? '' ?></span>
     </div>
 
