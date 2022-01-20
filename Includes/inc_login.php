@@ -6,11 +6,11 @@ session_start();
 
 if (isset($_POST['login'])) {
 
-//    ASK FOR INPUTVALUES ON LOGIN.PHP
+    // Ask for inputvalues from login.php
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-//    PREVENT SQL INJECTIONS
+    // Prevent SQL-injections
     $username = mysqli_real_escape_string($connection, $email);
     $password = mysqli_real_escape_string($connection, $password);
 
@@ -21,7 +21,7 @@ if (isset($_POST['login'])) {
         die("QUERY FAILED" . mysqli_error($connection));
     }
 
-//    STORE VALUES IN ARRAY
+    // Store values in an array
     while ($row = mysqli_fetch_array($query)) {
         $db_id = $row['id'];
         $db_firstname = $row['firstname'];
@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
         $db_password = $row['password'];
     }
 
-//    CHECK IF USER EXISTS AND SEND TO ADMIN, USER, OR LOGIN PAGE
+    // Check if user exists and send to admin, user or login page
     if ($db_email == "admin.admin@gmail.com" && password_verify($password, $db_password)) {
 
         header("Location: ../admin/index.php");

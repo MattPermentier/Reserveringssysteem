@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-//REMOVE ALL SESSION INFO WHEN USER IS LOGGED OUT
+// Remove all session info when user is logged out
 $_SESSION['id'] = null;
 $_SESSION['firstname'] = null;
 $_SESSION['lastname'] = null;

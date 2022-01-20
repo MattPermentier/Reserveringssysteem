@@ -5,11 +5,13 @@ require_once "includes/database.php";
 
 if (isset($_SESSION['email'])) {
 
+    // Save session email to variabele
     $email = $_SESSION['email'];
 
-    $select_query = "SELECT * FROM users WHERE email = '{$email}'";
+    $select_query = "SELECT * FROM users WHERE email = '$email'";
     $select_user_profile_query = mysqli_query($connection, $select_query);
 
+    // Save the user information in an array
     while ($row = mysqli_fetch_array($select_user_profile_query)) {
         $user_id = $row['id'];
         $user_firstname = $row['firstname'];
@@ -20,6 +22,7 @@ if (isset($_SESSION['email'])) {
     }
 }
 
+// Save the inputvalues and update the database
 if (isset($_POST['submit'])) {
 
     $user_firstname = $_POST['firstname'];

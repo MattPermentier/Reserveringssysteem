@@ -1,9 +1,9 @@
 <?php
-$host       = "localhost";
-$database   = "reserveringssysteem";
-$user       = "root";
-$password   = "";
+$host = "localhost";
+$database = "reserveringssysteem";
+$user = "root";
+$password = "";
 
-//TEST CONNECTION WITH THE DATABASE
+// Test connection with the database
 $connection = mysqli_connect($host, $user, $password, $database)
 or die("Error: " . mysqli_connect_error());

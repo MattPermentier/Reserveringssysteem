@@ -2,7 +2,8 @@
 require_once "includes/database.php";
 /** @var mysqli $connection */
 
-//CHECK FOR SUBMIT BUTTON AND SAVE ALL THE GIVEN INPUTVALUES FROM REGISTRATION.PHP
+
+// Check if button is clicked and save all the inputvalues
 if (isset($_POST['submit'])) {
 
     $firstname = $_POST['firstname'];
@@ -11,18 +12,18 @@ if (isset($_POST['submit'])) {
     $phone = $_POST['phone'];
     $password = $_POST['password'];
 
-//CHECK IF INPUTVALUES ARE ALL FILLED IN AND PROTECT FOR SQL INJECTIONS
+
+    // Check is inputvalues are not empty and save against SQL-injections
     if (!empty($firstname) && !empty($lastname) && !empty($email) && !empty($phone) && !empty($password)) {
 
         $firstname = mysqli_real_escape_string($connection, $firstname);
         $lastname = mysqli_real_escape_string($connection, $lastname);
         $email = mysqli_real_escape_string($connection, $email);
         $phone = mysqli_real_escape_string($connection, $phone);
-        $password = mysqli_real_escape_string($connection, $password);
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-//        SEND INPUTVALUES TO DATABASE AND CHECK IF VALUES ARE SUCCESSFULL INSERTED
+        // Send inputvalues to database and check if values are successfull inserted
         $query = "INSERT INTO users (firstname, lastname, email, phone, password) VALUES ('$firstname', '$lastname', '$email', '$phone', '$password')";
         $result = mysqli_query($connection, $query);
 
