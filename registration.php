@@ -17,23 +17,23 @@
                 <form action="registration.php" method="post">
                     <div>
                         <label for="firstname">Voornaam:</label>
-                        <input type="text" name="firstname" placeholder="Voornaam">
+                        <input type="text" name="firstname" placeholder="Voornaam" value="<?= isset($firstname) ? htmlentities($firstname) : '' ?>">
                     </div>
                     <div>
                         <label for="lastname">Achternaam:</label>
-                        <input type="text" name="lastname" placeholder="Achternaam">
+                        <input type="text" name="lastname" placeholder="Achternaam" value="<?= isset($lastname) ? htmlentities($lastname) : '' ?>">
                     </div>
                     <div>
                         <label for="email">Email:</label>
-                        <input type="email" name="email" placeholder="Email">
+                        <input type="email" name="email" placeholder="Email" value="<?= isset($email) ? htmlentities($email) : '' ?>">
                     </div>
                     <div>
                         <label for="phone">Telefoonnummer:</label>
-                        <input type="number" name="phone" placeholder="Telefoonnummer">
+                        <input type="number" name="phone" placeholder="Telefoonnummer" value="<?= isset($phone) ? htmlentities($phone) : '' ?>">
                     </div>
                     <div>
                         <label for="password">Wachtwoord:</label>
-                        <input type="password" name="password" placeholder="Wachtwoord">
+                        <input type="password" name="password" placeholder="Wachtwoord" value="<?= isset($password) ? htmlentities($password) : '' ?>">
                     </div>
 
                     <input type="submit" name="submit" value="Account aanmaken">

@@ -3,13 +3,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Music Collection Create</title>
+    <title>Reservering</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
 
-<!--Navigation-->
+<!--CHECK FOR NORMAL USER OR ADMIN FOR THE NAVIGATION-->
 <?php
 if ($_SESSION['firstname'] == "admin") {
 
@@ -26,13 +26,13 @@ if ($_SESSION['firstname'] == "admin") {
     <div><span class="errors"><?= $errors['connection']; ?></span></div>
 <?php } ?>
 
-<!-- enctype="multipart/form-data" no characters will be converted -->
+<!--CREATE FORM TO MAKE A RESERVATION-->
 <form action="" method="post" enctype="multipart/form-data">
 
     <!--    CHOOSE NAME-->
     <div>
         <label for="name">Naam</label>
-        <input id="name" type="text" name="name" value="<?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?>" required/>
+        <input id="name" type="text" name="name" value="<?php echo htmlentities($_SESSION['firstname']); ?> <?php echo htmlentities($_SESSION['lastname']); ?>"/>
         <span class="errors"><?= $errors['name'] ?? '' ?></span>
     </div>
 
@@ -40,7 +40,7 @@ if ($_SESSION['firstname'] == "admin") {
     <div>
         <label for="haircut">Knipbeurt</label>
 
-        <select name="haircut" required>
+        <select name="haircut" >
             <option value="">Select</option>
             <option value="Heren Knippen">Heren Knippen</option>
             <option value="Dames Knippen">Dames Knippen</option>
@@ -54,14 +54,14 @@ if ($_SESSION['firstname'] == "admin") {
     <!--    CHOOSE DATE-->
     <div>
         <label for="date">Datum</label>
-        <input id="date" type="date" name="date" required/>
+        <input id="date" type="date" name="date" />
         <span class="errors"><?= isset($errors['date']) ? $errors['date'] : '' ?></span>
     </div>
 
     <!--    CHOOSE TIME-->
     <div>
         <label for="time">Tijd</label>
-        <input type="time" name="time" min="09:00" max="18:00" step="1800" value="time" required>
+        <input type="time" name="time" min="09:00" max="18:00" step="1800" value="time" >
 
         <span class="errors"><?= isset($errors['haircut']) ? $errors['haircut'] : '' ?></span>
     </div>

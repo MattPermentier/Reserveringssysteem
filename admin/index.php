@@ -12,7 +12,7 @@ require_once "includes/inc_index.php";
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
-<h1>Mijn Afspraken</h1>
+<h1>Alle Afspraken</h1>
 
 <?php include "includes/admin_navigation.php"; ?>
 
@@ -30,7 +30,7 @@ require_once "includes/inc_index.php";
     </thead>
     <tfoot>
     <tr>
-        <td colspan="10">&copy; My Collection</td>
+        <td colspan="10">&copy;HaarHuis</td>
     </tr>
     </tfoot>
     <tbody>

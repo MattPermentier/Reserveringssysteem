@@ -1,5 +1,5 @@
 <?php
-//Check if data is valid & generate error if not so
+// Check if data is valid & generate error if not so
 $errors = [];
 if ($name == "") {
     $errors['name'] = 'Vul je naam in';

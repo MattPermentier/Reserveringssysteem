@@ -1,4 +1,10 @@
-<?php require_once "includes/inc_profile.php"?>
+<?php require_once
+"includes/inc_profile.php"
+/** @var mysqli $user_firstname */
+/** @var mysqli $user_lastname */
+/** @var mysqli $user_email */
+/** @var mysqli $user_phone */
+?>
 
 <!doctype html>
 <html lang="en">
@@ -16,19 +22,19 @@
     <form action="" method="post">
         <div>
             <label for="">Voornaam</label>
-            <input type="text" name="firstname" value="<?php echo $user_firstname; ?>">
+            <input type="text" name="firstname" value="<?php echo htmlentities($user_firstname); ?>">
         </div>
         <div>
             <label for="">Achternaam</label>
-            <input type="text" name="lastname" value="<?php echo $user_lastname; ?>">
+            <input type="text" name="lastname" value="<?php echo htmlentities($user_lastname); ?>">
         </div>
         <div>
             <label for="">Email</label>
-            <input type="email" name="email" value="<?php echo $user_email; ?>">
+            <input type="email" name="email" value="<?php echo htmlentities($user_email) ; ?>">
         </div>
         <div>
             <label for="">Telefoonnummer</label>
-            <input type="text" name="phone" value="<?php echo $user_phone; ?>">
+            <input type="text" name="phone" value="<?php echo htmlentities($user_phone); ?>">
         </div>
 
 

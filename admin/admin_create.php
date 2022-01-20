@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Music Collection Create</title>
+    <title>Reserveringen</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
@@ -66,7 +66,7 @@
 
 <!--BACK TO INDEX.PHP-->
 <div>
-    <a href="admin/index.php">Go back to the list</a>
+    <a href="admin/index.php">Ga terug naar alle reserveringen</a>
 </div>
 </body>
 </html>
